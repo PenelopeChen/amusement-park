@@ -109,7 +109,7 @@ export default function Subscribe(){
           try {
             await setDoc(docRef, dataToFirestore);
             console.log("Data added to Firestore");
-            setSubStatus(true);
+            setSubStatus(!subStatus);
           } catch (error) {
             console.error("Error adding document: ", error);
           }
