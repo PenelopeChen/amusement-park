@@ -49,6 +49,13 @@ export default function Subscribe(){
         return "";
     }
     
+    // email validity check
+    const emailValidity = (email) => {
+        const emailRegex = /^[a-zA-Z0-9._]+@[a-zA-Z0-9.]+\.[a-zA-Z]{2,}$/;
+        if (!emailRegex.test(email)) {
+            return 'Email is invalid';
+          }
+    }
 
     // handle the name input
     const _handleName = (e, stateToUpdate) => {
@@ -63,7 +70,14 @@ export default function Subscribe(){
         }
       };
       
+    // handle the email input
+    const _handleEmail = (e)=>{
+        const inputEmail = e.target.value;
+        const emailError = emailValidity(inputEmail);
+        setErrorMsg(emailError)
+        setEmail(inputEmail);
 
+    }
     // variables for Select 
     const topicsOptions = [
         { value: 'Special Offers', label: 'Special Offers' },
@@ -145,7 +159,7 @@ export default function Subscribe(){
                 <br/>
                 </section>
                 Email
-                <input type="email" value={ email? email:"loading..." } title="If you wish to subscribe to the newsletter using a different email, please type it in."/> <br />
+                <input type="email" value={ email? email:"loading..." } onInput={ _handleEmail } title="If you wish to subscribe to the newsletter using a different email, please type it in."/> <br />
                 Subscription Type
                 <Select
                     closeMenuOnSelect={false}
