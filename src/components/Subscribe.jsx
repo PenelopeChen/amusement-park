@@ -3,16 +3,21 @@ import { auth, db } from '../firebase';
 import {doc, setDoc, addDoc} from "firebase/firestore";
 import { useAuthState } from 'react-firebase-hooks/auth';
 import Select from 'react-select'
+import { useNavigate } from "react-router-dom";
+
 
 export default function Subscribe(){
+    const navigate = useNavigate(); 
+
     
     const [user, loading, error] = useAuthState(auth);
     const [errorMsg, setErrorMsg] = useState("");
     const [email, setEmail] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
-    const [topics, setTopics] = useState([ "Special Offers" ]);
+    const [topics, setTopics] = useState([]);
     const [frequency, setFrequency] = useState('');
+    const [subStatus, setSubStatus] = useState(false);
 
     // states for Select 
     const [isClearable, setIsClearable] = useState(true);
@@ -89,24 +94,34 @@ export default function Subscribe(){
     const _handleSubmit = async (e) => {
         e.preventDefault();
         if(email && firstName && lastName && topics && frequency) {
+            const capitalizedFirstName = firstName.charAt(0).toUpperCase() + firstName.slice(1);
+            const capitalizedLastName = lastName.charAt(0).toUpperCase() + lastName.slice(1);
+
           const dataToFirestore = {
             email: email,
-            firstName: firstName,
-            lastName: lastName,
+            firstName: capitalizedFirstName,
+            lastName: capitalizedLastName,
             topics: topics,
             frequency: frequency
           };
       
-          const docRef = await doc(db, 'users', email);
+          const docRef =  doc(db, 'users', email);
           try {
             await setDoc(docRef, dataToFirestore);
             console.log("Data added to Firestore");
+            setSubStatus(true);
           } catch (error) {
             console.error("Error adding document: ", error);
           }
         }
+        
       }
-
+    
+    useEffect(() => {
+        if(subStatus){
+            navigate('/');
+        }
+    }, [subStatus])
       
     useEffect(() => {
         console.log(topics);
