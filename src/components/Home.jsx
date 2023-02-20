@@ -4,6 +4,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { getAuth, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 
+import Profile from "./Profile";
 
 export default function Home(){
     const [user, loading, error] = useAuthState(auth);
@@ -20,6 +21,7 @@ export default function Home(){
 
     if(!user){
         return <div>
+            <h1>Welcome Message!</h1>
             <button onClick={()=>{
                 navigate("/login")
             }}>Log In</button>
@@ -32,9 +34,12 @@ export default function Home(){
     }
     return(
         <div>
-            <h1>Home</h1>
-            { console.log( "user information: ", user) }
+            <h1>You have signed in</h1>
+            <Profile /> 
+
+            {/* { console.log( "user information: ", user) } */}
             <button onClick={ _logOut }> Log Out</button>
+            <button onClick={()=>{navigate('/subscribe')}}>Edit Subscription</button>
             
         </div>
     )

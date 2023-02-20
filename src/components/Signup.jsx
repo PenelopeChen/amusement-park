@@ -38,7 +38,7 @@ export default function Signup() {
       );
       const user = userCredential.user;
       console.log("User created successfully:", user);
-      navigate("/");
+     navigate("/");
     } catch (error) {
       console.log(error);
       setErrorMsg(error.message);
