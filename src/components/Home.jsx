@@ -35,6 +35,7 @@ export default function Home(){
             <h1>Home</h1>
             { console.log( "user information: ", user) }
             <button onClick={ _logOut }> Log Out</button>
+            <button onClick={()=>{navigate('/subscribe')}}>Subsribe</button>
             
         </div>
     )
