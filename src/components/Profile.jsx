@@ -31,6 +31,10 @@ export default function Profile(){
                 <p>Frequency: {profile.frequency}</p>
               </div>
             )}
+
+            {!profile && (
+                <p>Loading...</p>
+            )}
         </div>
     )
 }
