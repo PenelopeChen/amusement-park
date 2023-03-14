@@ -66,7 +66,7 @@ export default function Signup() {
   return (
     <div>
       <h1>Sign Up</h1>
-      <form onSubmit={_signInWithEmailAndPassword}>
+      <form className="signup-form" onSubmit={_signInWithEmailAndPassword}>
         {errorMsg && <div style={{ color: "red" }}>{errorMsg}</div>}
         <input
           type="email"
@@ -74,19 +74,25 @@ export default function Signup() {
           value={email}
           onInput={_handleEmail}
         />
+        <br />
+        <br />
         <input
           type="password"
           placeholder="Enter your password"
           value={password}
           onInput={_handlePassword}
         />
+        <br />
+        <br />
         <input
           type="password"
           placeholder="Confirm your password"
           value={passwordConfirmation}
           onInput={_handlePasswordConfirmation}
         />
-        <input type="submit" value="Sign Up" />
+        <br />
+        <br />
+        <input className="signup-btn" type="submit" value="Sign Up" />
       </form>
     </div>
   );
