@@ -23,7 +23,7 @@ export default function Profile(){
         <div>
             <h1>Profile</h1>
             { profile && (
-              <div>
+              <div className="profile">
                 <p>First Name: {profile.firstName}</p>
                 <p>Last Name: {profile.lastName}</p>
                 <p>Email: {profile.email}</p>

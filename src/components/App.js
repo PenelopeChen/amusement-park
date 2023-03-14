@@ -4,6 +4,7 @@ import Signup from '../components/Signup';
 import Login from '../components/Login'; 
 import Home from '../components/Home';
 import Subscribe from './Subscribe';
+import "../App.css";
 
 function App() {
   const location = useLocation();

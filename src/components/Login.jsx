@@ -35,21 +35,25 @@ export default function Login(){
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="login-form" onSubmit={handleSubmit}>
       {error && <div>{error}</div>}
-      <div>
+      <br />
+      <br />
+      <div className="login-form-email">
         <label>
           Email:
           <input type="email" value={email} onChange={handleEmailChange} />
         </label>
       </div>
-      <div>
+      <br />
+      <div className="login-form-password">
         <label>
           Password:
           <input type="password" value={password} onChange={handlePasswordChange} />
         </label>
       </div>
-      <button type="submit">Log in</button>
+      <br />
+      <button className="login-btn" type="submit">Log in</button>
     </form>
   );
 };

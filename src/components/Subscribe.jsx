@@ -143,23 +143,30 @@ export default function Subscribe(){
     },[topics, frequency])
 
     return (
-        <div>
+        <div className="subscribe">
             <h1>Subscribe</h1>
-            <p>You have logged in using :{ email? email:"loading..." }</p>
-            <form onClick={ _handleSubmit }>
-                <section>
+            <p className="login-status">You have logged in using :{ email? email:"loading..." }</p>
+            <form className="subscribe-form" onClick={ _handleSubmit }>
+                <section className="names">
                 {errorMsg && <div style={{ color: "red" }}>{errorMsg}</div>}
                 First Name 
-                <input type="text" value={ firstName } onInput={(e) => _handleName(e, "firstName")} />                
                 <br/>
-
+                <input type="text" value={ firstName } onInput={(e) => _handleName(e, "firstName")} />
+                
                 {/* {errorMsg && <div style={{ color: "red" }}>{errorMsg}</div>} */}
                 Last Name 
-                <input type="text" value={ lastName } onInput={(e) => _handleName(e, "lastName")} />
                 <br/>
+                <input type="text" value={ lastName } onInput={(e) => _handleName(e, "lastName")} />
                 </section>
+                <br/>
+
                 Email
+<<<<<<< HEAD
                 <input type="email" value={ email? email:"loading..." } onInput={ _handleEmail } title="If you wish to subscribe to the newsletter using a different email, please type it in."/> <br />
+=======
+                <input type="email" value={ email? email:"loading..." } title="If you wish to subscribe to the newsletter using a different email, please type it in."/> 
+                <br />
+>>>>>>> 0cb8242316a9d38df35bd4482a2060b697e0958b
                 Subscription Type
                 <Select
                     closeMenuOnSelect={false}
@@ -167,7 +174,8 @@ export default function Subscribe(){
                     isMulti
                     options={ topicsOptions }
                     onChange={ _handleTopics }
-                /> <br />
+                /> 
+                <br />
                 Subscription Frequency
                 <Select
                     classNamePrefix="select"
@@ -180,6 +188,7 @@ export default function Subscribe(){
                     options={ frequencyOptions }
                     onChange={ _handleFrequency }
                 /> 
+                <br />
                 <input type="submit" value="Subscribe" />
             </form>
             
